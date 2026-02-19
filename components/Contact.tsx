@@ -61,7 +61,7 @@ const contactCards: ContactCard[] = [
     content: [
       {
         text: '@rainbow_builders',
-        href: 'https://instagram.com/rainbow_builders',
+        href: 'https://www.instagram.com/rainbow_builders?igsh=MWN0d284cTg5dW45bg==',
         external: true,
       },
     ],
