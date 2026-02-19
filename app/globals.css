@@ -1017,6 +1017,9 @@ h3 {
 
 .projects-carousel-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
 .projects-carousel {
@@ -1026,17 +1029,28 @@ h3 {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding: var(--spacing-sm) 1rem;
+  padding: var(--spacing-sm) 0;
 }
 
 .projects-carousel::-webkit-scrollbar {
   display: none;
 }
 
+/* Desktop arrows (flex siblings of carousel) */
+.carousel-arrow-desktop {
+  display: none;
+}
+
+/* Mobile arrows row below carousel */
+.carousel-arrows-mobile {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: var(--spacing-md);
+}
+
 .carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -1049,14 +1063,6 @@ h3 {
   transition: all var(--transition);
   box-shadow: var(--shadow-sm);
   z-index: 2;
-}
-
-.carousel-arrow-left {
-  left: 0;
-}
-
-.carousel-arrow-right {
-  right: 0;
 }
 
 .carousel-arrow:hover {
@@ -1552,16 +1558,13 @@ h3 {
     padding: var(--spacing-xxl) 4rem;
   }
 
-  .projects-carousel {
-    padding: var(--spacing-sm) 2rem;
+  /* On desktop: show flex-sibling arrows, hide mobile row */
+  .carousel-arrow-desktop {
+    display: flex;
   }
 
-  .carousel-arrow-left {
-    left: 0.5rem;
-  }
-
-  .carousel-arrow-right {
-    right: 0.5rem;
+  .carousel-arrows-mobile {
+    display: none;
   }
 
   .project-card {

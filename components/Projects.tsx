@@ -109,7 +109,7 @@ export default function Projects() {
         {/* Carousel */}
         <div className="projects-carousel-wrapper">
           <button
-            className="carousel-arrow carousel-arrow-left"
+            className="carousel-arrow carousel-arrow-left carousel-arrow-desktop"
             onClick={() => scrollCarousel('left')}
             aria-label="Scroll left"
           >
@@ -151,7 +151,29 @@ export default function Projects() {
           </div>
 
           <button
-            className="carousel-arrow carousel-arrow-right"
+            className="carousel-arrow carousel-arrow-right carousel-arrow-desktop"
+            onClick={() => scrollCarousel('right')}
+            aria-label="Scroll right"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile arrows below carousel */}
+        <div className="carousel-arrows-mobile">
+          <button
+            className="carousel-arrow"
+            onClick={() => scrollCarousel('left')}
+            aria-label="Scroll left"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            className="carousel-arrow"
             onClick={() => scrollCarousel('right')}
             aria-label="Scroll right"
           >
