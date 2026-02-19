@@ -1562,7 +1562,7 @@ h3 {
     gap: var(--spacing-sm);
   }
 
-  .carousel-arrow-desktop {
+  .carousel-arrow.carousel-arrow-desktop {
     display: flex;
   }
 
