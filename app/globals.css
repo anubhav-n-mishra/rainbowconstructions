@@ -1017,9 +1017,6 @@ h3 {
 
 .projects-carousel-wrapper {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
 }
 
 .projects-carousel {
@@ -1036,7 +1033,7 @@ h3 {
   display: none;
 }
 
-/* Desktop arrows (flex siblings of carousel) */
+/* Desktop arrows (flex siblings of carousel) — hidden on mobile */
 .carousel-arrow-desktop {
   display: none;
 }
@@ -1559,6 +1556,12 @@ h3 {
   }
 
   /* On desktop: show flex-sibling arrows, hide mobile row */
+  .projects-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
   .carousel-arrow-desktop {
     display: flex;
   }

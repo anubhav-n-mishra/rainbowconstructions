@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 
 interface LightboxProps {
@@ -12,6 +12,8 @@ interface LightboxProps {
 export default function Lightbox({ images, title, onClose }: LightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const goToPrev = useCallback(() => {
     setIsLoading(true);
@@ -55,6 +57,25 @@ export default function Lightbox({ images, title, onClose }: LightboxProps) {
     }
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    const minSwipe = 50;
+    if (diff > minSwipe) {
+      goToNext();
+    } else if (diff < -minSwipe) {
+      goToPrev();
+    }
+  };
+
   return (
     <div
       className="lightbox-backdrop"
@@ -82,7 +103,12 @@ export default function Lightbox({ images, title, onClose }: LightboxProps) {
         </div>
 
         {/* Image area */}
-        <div className="lightbox-image-wrapper">
+        <div
+          className="lightbox-image-wrapper"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <button
             className="lightbox-nav lightbox-nav-left"
             onClick={goToPrev}
