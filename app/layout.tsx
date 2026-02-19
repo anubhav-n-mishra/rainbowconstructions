@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     'construction company, builders, residential construction, commercial construction, Rainbow Construction, India',
   authors: [{ name: 'Rainbow Construction' }],
   robots: 'index, follow',
+  icons: {
+    icon: '/logo.jpeg',
+    apple: '/logo.jpeg',
+  },
   openGraph: {
     title: 'Rainbow Construction | Building Excellence Since 2013',
     description:

@@ -83,11 +83,14 @@ export default function Header() {
             <a href="#services" onClick={(e) => scrollToSection(e, '#services')}>
               Services
             </a>
+            <a href="#projects" onClick={(e) => scrollToSection(e, '#projects')}>
+              Projects
+            </a>
             <a href="#contact" onClick={(e) => scrollToSection(e, '#contact')}>
               Contact
             </a>
           </nav>
-          <Link href="tel:+919876543210" className="header-cta">
+          <Link href="tel:+918619458053" className="header-cta">
             Call Now
           </Link>
           <button
@@ -108,10 +111,13 @@ export default function Header() {
         <a href="#services" onClick={(e) => scrollToSection(e, '#services')}>
           Services
         </a>
+        <a href="#projects" onClick={(e) => scrollToSection(e, '#projects')}>
+          Projects
+        </a>
         <a href="#contact" onClick={(e) => scrollToSection(e, '#contact')}>
           Contact
         </a>
-        <Link href="tel:+919876543210" className="mobile-cta" onClick={closeMenu}>
+        <Link href="tel:+918619458053" className="mobile-cta" onClick={closeMenu}>
           Call Now
         </Link>
       </nav>

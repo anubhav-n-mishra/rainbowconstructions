@@ -107,7 +107,7 @@ export default function Hero() {
           <a href="#contact" className="btn btn-primary" onClick={scrollToContact}>
             <span>Start Your Project</span>
           </a>
-          <Link href="tel:+919876543210" className="btn btn-ghost">
+          <Link href="tel:+918619458053" className="btn btn-ghost">
             <span className="btn-icon">&#9742;</span> Call Now
           </Link>
         </div>

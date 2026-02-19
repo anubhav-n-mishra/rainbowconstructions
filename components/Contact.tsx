@@ -31,8 +31,8 @@ const contactCards: ContactCard[] = [
       </svg>
     ),
     content: [
-      { text: '+91 9876543210', href: 'tel:+919876543210' },
-      { text: '+91 9876543211', href: 'tel:+919876543211' },
+      { text: '+91 86194 58053', href: 'tel:+918619458053' },
+      { text: '+91 81077 02727', href: 'tel:+918107702727' },
     ],
   },
   {
@@ -45,7 +45,7 @@ const contactCards: ContactCard[] = [
         <polyline points="22,6 12,13 2,6" />
       </svg>
     ),
-    content: [{ text: 'info@rainbowconstruction.in', href: 'mailto:info@rainbowconstruction.in' }],
+    content: [{ text: 'rainbowbuilders.enquiry@gmail.com', href: 'mailto:rainbowbuilders.enquiry@gmail.com' }],
   },
   {
     id: 3,
@@ -60,8 +60,8 @@ const contactCards: ContactCard[] = [
     ),
     content: [
       {
-        text: '@rainbowconstruction',
-        href: 'https://instagram.com/rainbowconstruction',
+        text: '@rainbow_builders',
+        href: 'https://instagram.com/rainbow_builders',
         external: true,
       },
     ],
@@ -78,9 +78,9 @@ const contactCards: ContactCard[] = [
     ),
     content: null,
     address: {
-      line1: 'Rainbow Construction Pvt. Ltd.',
-      line2: '42, Industrial Area, Phase II',
-      line3: 'Sector 15, Gurugram 122001',
+      line1: 'Plot no. 3-4, Shop no.2, Silver Wings Apartment',
+      line2: 'Gyan Vihar Colony, DCM, Ajmer Road',
+      line3: 'Jaipur, Rajasthan 302019',
     },
   },
 ];
@@ -135,7 +135,12 @@ export default function Contact() {
             ))}
           </div>
           <div className="contact-cta">
-            <Link href="tel:+919876543210" className="btn btn-primary btn-large">
+            <Link
+              href="https://wa.me/918619458053?text=Hi%2C%20I%20would%20like%20to%20schedule%20a%20consultation."
+              className="btn btn-primary btn-large"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <span>Schedule a Consultation</span>
             </Link>
           </div>

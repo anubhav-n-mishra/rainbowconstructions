@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Location() {
   return (
     <section className="location-section">
@@ -15,9 +17,13 @@ export default function Location() {
           </div>
           <div className="qr-container">
             <div className="qr-frame">
-              <div className="qr-placeholder">
-                <span>QR</span>
-              </div>
+              <Image
+                src="/qr-code.png"
+                alt="QR Code - Scan for location and contact details"
+                width={200}
+                height={200}
+                className="qr-image"
+              />
             </div>
             <p className="qr-hint">Scan for location</p>
           </div>

@@ -913,28 +913,10 @@ h3 {
   box-shadow: var(--shadow-sm);
 }
 
-.qr-placeholder {
-  width: 140px;
-  height: 140px;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--color-grey-lighter),
-    var(--color-grey-lighter) 10px,
-    var(--color-white) 10px,
-    var(--color-white) 20px
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.qr-placeholder span {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-grey-light);
-  background-color: var(--color-white);
-  padding: 0.5rem 1rem;
+.qr-image {
+  width: 200px;
+  height: 200px;
+  display: block;
 }
 
 .qr-hint {
@@ -1026,6 +1008,412 @@ h3 {
 }
 
 /* ========================================
+   Projects Section
+   ======================================== */
+.projects {
+  padding: var(--spacing-xxl) 2rem;
+  background-color: var(--color-off-white);
+}
+
+.projects-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.projects-carousel {
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: var(--spacing-sm) 0;
+}
+
+.projects-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-grey-lighter);
+  background-color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.carousel-arrow:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.carousel-arrow:hover svg {
+  color: var(--color-white);
+}
+
+.carousel-arrow svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-charcoal);
+  transition: color var(--transition-fast);
+}
+
+.project-card {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-grey-lighter);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: left;
+  font-family: inherit;
+  padding: 0;
+}
+
+.project-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+}
+
+.project-card-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-card-image img {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-card-image img {
+  transform: scale(1.08);
+}
+
+.project-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 13, 13, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.project-card:hover .project-card-overlay {
+  opacity: 1;
+}
+
+.project-card-view {
+  color: var(--color-white);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all var(--transition-fast);
+}
+
+.project-card:hover .project-card-view {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.project-card-body {
+  padding: var(--spacing-md);
+}
+
+.project-card-icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 0.75rem;
+}
+
+.project-card-icon svg {
+  width: 100%;
+  height: 100%;
+  color: var(--color-accent);
+}
+
+.project-card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.375rem;
+  transition: color var(--transition);
+}
+
+.project-card:hover .project-card-title {
+  color: var(--color-accent);
+}
+
+.project-card-desc {
+  font-size: 0.875rem;
+  color: var(--color-grey);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.project-card-count {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-accent);
+  padding: 0.25rem 0.625rem;
+  background-color: rgba(196, 92, 38, 0.08);
+  border: 1px solid rgba(196, 92, 38, 0.2);
+}
+
+/* ========================================
+   Lightbox
+   ======================================== */
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lightboxFadeIn 0.3s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.lightbox-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.lightbox-counter {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 1px;
+}
+
+.lightbox-close {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.lightbox-close svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-white);
+}
+
+.lightbox-image-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 0;
+  padding: 0 1rem;
+}
+
+.lightbox-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  z-index: 1;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  z-index: 10;
+  padding: 0;
+}
+
+.lightbox-nav:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.lightbox-nav svg {
+  width: 22px;
+  height: 22px;
+  color: var(--color-white);
+}
+
+.lightbox-nav-left {
+  left: 1rem;
+}
+
+.lightbox-nav-right {
+  right: 1rem;
+}
+
+.lightbox-thumbnails {
+  display: flex;
+  gap: 6px;
+  padding: 0.75rem 1.5rem 1rem;
+  overflow-x: auto;
+  justify-content: center;
+  flex-shrink: 0;
+  scrollbar-width: none;
+}
+
+.lightbox-thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.lightbox-thumb {
+  flex: 0 0 50px;
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.5;
+  transition: all var(--transition-fast);
+  padding: 0;
+  background: none;
+}
+
+.lightbox-thumb:hover {
+  opacity: 0.85;
+}
+
+.lightbox-thumb-active {
+  opacity: 1;
+  border-color: var(--color-accent);
+}
+
+/* ========================================
+   CTA Banner
+   ======================================== */
+.cta-banner {
+  padding: var(--spacing-xl) 2rem;
+  background: linear-gradient(135deg, var(--color-black) 0%, var(--color-charcoal) 100%);
+  text-align: center;
+}
+
+.cta-banner-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-banner-heading {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-sm);
+}
+
+.cta-banner-text {
+  font-size: 1.0625rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-lg);
+}
+
+.cta-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  justify-content: center;
+}
+
+.btn-ghost-dark {
+  background-color: transparent;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-ghost-dark:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-white);
+}
+
+/* ========================================
    Animations
    ======================================== */
 .fade-in {
@@ -1102,7 +1490,7 @@ h3 {
   }
 
   .hero {
-    padding: 0 4rem;
+    padding: 8rem 4rem 4rem;
     min-height: 100vh;
   }
 
@@ -1152,6 +1540,14 @@ h3 {
     min-height: 70vh;
   }
 
+  .projects {
+    padding: var(--spacing-xxl) 4rem;
+  }
+
+  .project-card {
+    flex: 0 0 320px;
+  }
+
   .contact {
     padding: var(--spacing-xxl) 4rem;
   }
@@ -1191,6 +1587,81 @@ h3 {
   :root {
     --color-grey: #333333;
     --color-grey-light: #555555;
+  }
+}
+
+/* ========================================
+   Sticky Mobile CTA Bar
+   ======================================== */
+.sticky-mobile-cta {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: var(--color-white);
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.12);
+  border-top: 1px solid var(--color-grey-lighter);
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+.sticky-cta-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.sticky-cta-call {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.sticky-cta-call:hover {
+  background-color: var(--color-accent-dark);
+}
+
+.sticky-cta-call svg {
+  color: var(--color-white);
+}
+
+.sticky-cta-enquiry {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.sticky-cta-enquiry:hover {
+  background-color: var(--color-charcoal);
+}
+
+.sticky-cta-enquiry svg {
+  color: var(--color-white);
+}
+
+/* Hide sticky bar on desktop */
+@media (min-width: 900px) {
+  .sticky-mobile-cta {
+    display: none;
+  }
+}
+
+/* Add bottom padding to footer so sticky bar doesn't overlap content on mobile */
+@media (max-width: 899px) {
+  .footer-bottom {
+    padding-bottom: 5rem;
   }
 }
 

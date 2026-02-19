@@ -23,8 +23,9 @@ export default function Footer() {
           </div>
           <div className="footer-links">
             <Link href="#services">Services</Link>
+            <Link href="#projects">Projects</Link>
             <Link href="#contact">Contact</Link>
-            <Link href="tel:+919876543210">Call Us</Link>
+            <Link href="tel:+918619458053">Call Us</Link>
           </div>
         </div>
       </div>
